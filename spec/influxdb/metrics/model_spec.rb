@@ -1,8 +1,8 @@
-require_relative '../../../spec_helper'
+require_relative '../../spec_helper'
 
-module InfluxDB::Metrics::Event
+module InfluxDB::Metrics
   describe Model do
-    include SpecHelpers
+    include EventHelpers
 
     subject {
       Model.new

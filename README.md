@@ -1,4 +1,4 @@
-# Influxdb::Metrics
+# InfluxDB::Metrics
 
 This gem adds allow your Rails app to report performance metrics for database queries and response times to InfluxDB.
 

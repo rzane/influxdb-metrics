@@ -1,3 +1,5 @@
+require 'active_support/core_ext/module/delegation'
+
 require 'influxdb'
 require 'influxdb/metrics/version'
 require 'influxdb/metrics/configuration'

@@ -1,13 +1,12 @@
-require 'active_support/core_ext/module/delegation'
-require 'influxdb/metrics/event/controller'
-require 'influxdb/metrics/event/model'
+require 'influxdb/metrics/controller'
+require 'influxdb/metrics/model'
 
 module InfluxDB
   module Metrics
     class Configuration
       EVENTS = {
-        action_controller: Event::Controller,
-        active_record: Event::Model
+        action_controller: Controller,
+        active_record: Model
       }
 
       attr_accessor :hosts

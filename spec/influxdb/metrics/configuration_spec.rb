@@ -47,12 +47,12 @@ module InfluxDB::Metrics
     describe '#events=' do
       it 'accepts a symbol' do
         subject.events = :active_record
-        subject.events.must_equal [Event::Model]
+        subject.events.must_equal [Model]
       end
 
       it 'accepts an array' do
         subject.events = :active_record, :action_controller
-        subject.events.must_equal [Event::Model, Event::Controller]
+        subject.events.must_equal [Model, Controller]
       end
 
       it 'raises error for invalid event' do
@@ -71,7 +71,7 @@ module InfluxDB::Metrics
 
       it 'assigns subscribed' do
         subject.subscribe
-        subject.subscribed.first.must_be_instance_of Event::Controller
+        subject.subscribed.first.must_be_instance_of Controller
       end
     end
   end

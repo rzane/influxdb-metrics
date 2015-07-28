@@ -21,25 +21,23 @@ module InfluxDB::Metrics
     end
   end
 
-  module Event
-    module SpecHelpers
-      def before_setup
-        InfluxDB::Metrics.configure { |c| c.client = client }
-        super
-      end
+  module EventHelpers
+    def before_setup
+      InfluxDB::Metrics.configure { |c| c.client = client }
+      super
+    end
 
-      def channel
-        subject.subscribe_to
-      end
+    def channel
+      subject.subscribe_to
+    end
 
-      def client
-        @client ||= InfluxDB::Metrics::TestClient.new
-      end
-      delegate :last_point, to: :client
+    def client
+      @client ||= InfluxDB::Metrics::TestClient.new
+    end
+    delegate :last_point, to: :client
 
-      def instrument(*args, &block)
-        ActiveSupport::Notifications.instrument(*args, &block)
-      end
+    def instrument(*args, &block)
+      ActiveSupport::Notifications.instrument(*args, &block)
     end
   end
 end
