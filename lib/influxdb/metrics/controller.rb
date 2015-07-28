@@ -15,9 +15,9 @@ module InfluxDB
         view = (payload[:view_runtime] || 0).ceil
         db =  (payload[:db_runtime] || 0).ceil
 
-        write_point 'controller', metric.merge(duration: timing)
-        write_point 'view', metric.merge(view: view)
-        write_point 'db', metric.merge(db: db)
+        write_point 'controller', metric.merge(value: timing)
+        write_point 'view', metric.merge(value: view)
+        write_point 'db', metric.merge(value: db)
       rescue => e
         log :debug, "Unable to process action: #{e.message}"
       end

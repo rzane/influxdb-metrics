@@ -12,12 +12,12 @@ end
 
 module InfluxDB::Metrics
   class TestClient
+    attr_reader :points
+
     Point = Struct.new(:series, :data)
 
-    attr_reader :last_point
-
     def write_point(series, data = {})
-      @last_point = Point.new(series, data)
+      (@points ||= []) << Point.new(series, data)
     end
   end
 
@@ -34,7 +34,7 @@ module InfluxDB::Metrics
     def client
       @client ||= InfluxDB::Metrics::TestClient.new
     end
-    delegate :last_point, to: :client
+    delegate :points, to: :client
 
     def instrument(*args, &block)
       ActiveSupport::Notifications.instrument(*args, &block)

@@ -16,7 +16,7 @@ module InfluxDB::Metrics
       it 'subscribes to ActiveSupport::Notifications' do
         subject.subscribe
         instrument channel, payload
-        last_point.wont_be_nil
+        points.last.wont_be_nil
       end
     end
 
@@ -27,19 +27,19 @@ module InfluxDB::Metrics
       end
 
       it 'names the series correctly' do
-        last_point.series.must_equal 'rails.sql'
+        points.last.series.must_equal 'rails.sql'
       end
 
       it 'tracks table name' do
-        last_point.data[:table].must_equal 'dogs'
+        points.last.data[:table].must_equal 'dogs'
       end
 
       it 'tracks sql action' do
-        last_point.data[:action].must_equal 'select'
+        points.last.data[:action].must_equal 'select'
       end
 
       it 'tracks the duration' do
-        last_point.data[:duration].must_equal 400
+        points.last.data[:duration].must_equal 400
       end
     end
 
